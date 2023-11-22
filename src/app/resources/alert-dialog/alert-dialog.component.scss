@@ -1,0 +1,62 @@
+@use '../../../scss/variables';
+@use '../../../scss/mixins';
+
+.success,
+.error,
+.warning {
+    width: 350px;
+    padding: 30px;
+    text-align: center;
+}
+
+.success .background {
+    background-image: url('../../../assets/svg/success.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 10rem;
+    width: 10rem;
+    margin: 0 auto;
+}
+
+.warning .background {
+    background-image: url('../../../assets/svg/warning.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 10rem;
+    width: 10rem;
+    margin: 0 auto;
+}
+
+.error .background {
+    background-image: url('../../../assets/svg/error.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 10rem;
+    width: 10rem;
+    margin: 0 auto;
+}
+
+.success h3,
+.error h3,
+.warning h3 {
+    color: #545454;
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 15px 0 0 0;
+    padding: 12px;
+    text-align: center;
+}
+
+.success p,
+.error p,
+.warning p {
+    color: #545454;
+    font-size: 1.5rem;
+    font-weight: normal;
+    margin: 0;
+    padding: 0 0 12px 0;
+    text-align: center;
+}

@@ -1,0 +1,73 @@
+@use "../scss/mixins";
+@use "../scss/variables";
+
+.header {
+    box-shadow: 0px 0px 5px rgb(0 0 0 / .3);
+    padding: 1rem;
+
+    &__grid {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+
+        @include mixins.tablet {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    }
+
+    &__logo {
+        color: variables.$background-header;
+        text-transform: uppercase;
+        font-size: 2.5rem;
+        font-weight: 600;
+    }
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 3rem;
+
+    @include mixins.tablet {
+        align-items: center;
+        flex-direction: row;
+        gap: 3rem;
+        margin-top: 0;
+    }
+
+    &__enlace {
+        display: inline-block;
+    }
+
+    &__accesible {
+        color: variables.$gris;
+        display: inline-block;
+
+        &::after {
+            content: "";
+            display: block;
+            width: 0;
+            height: 1px;
+            background: variables.$gris-claro;
+
+            transition: width 0.3s ease-in;
+        }
+
+        &:hover::after {
+            width: 100%;
+        }
+    }
+
+    &__btn {
+        @include mixins.boton(variables.$background-header, variables.$blanco);
+    }
+}
+
+.footer {
+    background: darken(variables.$blanco, 20%);
+    color: variables.$negro;
+    padding: 3rem;
+    width: 100%;
+}

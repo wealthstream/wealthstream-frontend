@@ -1,0 +1,132 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+// GAMA DE COLORES
+$my-primary-color: (
+    50 : #e1e1e2,
+    100 : #b4b5b7,
+    200 : #828487,
+    300 : #4f5257,
+    400 : #2a2d33,
+    500 : #04080f,
+    600 : #03070d,
+    700 : #03060b,
+    800 : #020408,
+    900 : #010204,
+    A100 : #a6a6a6,
+    A200 : #8c8c8c,
+    A400 : #737373,
+    A700 : #666666,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+
+$my-accent-color: (
+    50 : #eaeff7,
+    100 : #cbd8eb,
+    200 : #a8bede,
+    300 : #85a4d0,
+    400 : #6a91c6,
+    500 : #507dbc,
+    600 : #4975b6,
+    700 : #406aad,
+    800 : #3760a5,
+    900 : #274d97,
+    A100 : #d7e4ff,
+    A200 : #a4c1ff,
+    A400 : #719eff,
+    A700 : #588dff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+
+$my-warn-color: (
+    50 : #f4f8fc,
+    100 : #e3eef9,
+    200 : #d0e3f5,
+    300 : #bdd7f0,
+    400 : #afcfed,
+    500 : #a1c6ea,
+    600 : #99c0e7,
+    700 : #8fb9e4,
+    800 : #85b1e1,
+    900 : #74a4db,
+    A100 : #ffffff,
+    A200 : #ffffff,
+    A400 : #f2f8ff,
+    A700 : #d9eaff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+
+// PALETA DE COLORES
+$ContactCenterApp-primary: mat.define-palette($my-primary-color);
+$ContactCenterApp-accent: mat.define-palette($my-accent-color);
+$ContactCenterApp-warn: mat.define-palette($my-warn-color);
+
+// TEMA PROPIO
+$ContactCenterApp-theme: mat.define-light-theme((
+  color: (
+    primary: $ContactCenterApp-primary,
+    accent: $ContactCenterApp-accent,
+    warn: $ContactCenterApp-warn,
+  )
+));
+
+// APLICA TEMA
+@include mat.all-component-themes($ContactCenterApp-theme);
+
+@import "../node_modules/@angular/material/theming";
+@include mat-core();
+
+$my-primary: mat-palette($ContactCenterApp-accent);
+$my-accent: mat-palette($ContactCenterApp-warn);
+
+$my-theme: mat-light-theme($my-primary, $my-accent);
+
+@include angular-material-theme($my-theme)

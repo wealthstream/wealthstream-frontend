@@ -18,7 +18,7 @@ body {
 }
 
 p {
-    font-size: 2rem;
+    font-size: 1.6rem;
 }
 [class$="contenedor"],
 .contenedor {
@@ -37,4 +37,10 @@ ul {
 }
 .seccion {
     padding: 8rem 0;
+}
+
+label {
+    font-weight: 600;
+    color: variables.$gris;
+    font-size: 1.4rem;
 }

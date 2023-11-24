@@ -1,11 +1,11 @@
 <form class="formulario">
     <div class="formulario__type-movement">
-        <p>Tipo de Movimiento: <span>{{movementType}}</span></p>
+        <p>Tipo de Movimiento: <span>{{ movementType | titlecase }}</span></p>
     </div>
     <div class="formulario__title">
         <h3>Titular: <span>{{ customer.person?.name }} {{ customer.person?.surname }}</span></h3>
         <p>Identificación:<span>{{ customer.person?.identification }}</span></p>
-        <p>Cuenta: <span *ngIf="selectedAccount">{{ selectedAccount.accountType }}</span></p>
+        <p>Cuenta: <span *ngIf="selectedAccount">{{ selectedAccount.accountType | titlecase }}</span></p>
         <p>Saldo Contable:<span *ngIf="selectedAccount">{{ selectedAccount.initialBalance | currency }}</span></p>
     </div>
     <div class="formulario__content">
@@ -15,14 +15,17 @@
                 <option value="">-- Seleccione --</option>
                 <option *ngFor="let i of account" [ngValue]="i">{{ i.accountNumber }}</option>
             </select>
+            <span class="validation" *ngIf="validation && !selectedAccount">*Debes seleccionar el número de cuenta.</span>
         </div>
         <div class="formulario__data">
             <label for="accountDestination">Cuenta de Destino</label>
             <input type="text" name="accountDestination" id="accountDestination" placeholder="Número de Cuenta de destino" [(ngModel)]="destinationAccount" maxlength="10">
+            <span class="validation" *ngIf="validation && !destinationAccount">*Debes ingresar el número de cuenta destino.</span>
         </div>
         <div class="formulario__data">
             <label for="value">$ Valor</label>
             <input type="number" name="value" id="value" placeholder="Ingresa tu apellido" [(ngModel)]="value" step="0.01">
+            <span class="validation" *ngIf="validation && !value">*El valor debe ser mayor que cero.</span>
         </div>
     </div>
     <div class="formulario__btn">

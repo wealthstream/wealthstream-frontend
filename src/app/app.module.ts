@@ -20,6 +20,8 @@ import { ReportsComponent } from './components/account/account-movement/report/r
 import { DepositComponent } from './components/account/account-movement/movements/deposit/deposit.component';
 import { TransferComponent } from './components/account/account-movement/movements/transfer/transfer.component';
 import { WithdrawalComponent } from './components/account/account-movement/movements/withdrawal/withdrawal.component';
+import { OurPolicyComponent } from './components/our-policy/our-policy.component';
+import { ProfileComponent } from './components/account/account-movement/profile/profile.component';
 
 @NgModule({
 	declarations: [
@@ -33,6 +35,8 @@ import { WithdrawalComponent } from './components/account/account-movement/movem
   DepositComponent,
   TransferComponent,
   WithdrawalComponent,
+  OurPolicyComponent,
+  ProfileComponent,
 	],
 	imports: [
 		BrowserModule,

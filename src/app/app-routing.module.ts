@@ -9,6 +9,8 @@ import { DepositComponent } from './components/account/account-movement/movement
 import { WithdrawalComponent } from './components/account/account-movement/movements/withdrawal/withdrawal.component';
 import { TransferComponent } from './components/account/account-movement/movements/transfer/transfer.component';
 import { ReportsComponent } from './components/account/account-movement/report/reports/reports.component';
+import { OurPolicyComponent } from './components/our-policy/our-policy.component';
+import { ProfileComponent } from './components/account/account-movement/profile/profile.component';
 
 const routes: Routes = [
     { path: "customer", component: CreateCustomerComponent },
@@ -21,8 +23,7 @@ const routes: Routes = [
             { path: 'deposit', component: DepositComponent },
             { path: 'withdrawal', component: WithdrawalComponent },
             { path: 'transfer', component: TransferComponent },
-            // { path: 'transfer', component: TransferComponent },
-
+            { path: "profile", component: ProfileComponent }
         ]
     },
 ];

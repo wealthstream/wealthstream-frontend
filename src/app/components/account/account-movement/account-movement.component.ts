@@ -40,4 +40,9 @@ export class AccountMovementComponent {
         this._router.navigate(['/movement/transfer']);
     }
 
+    profile() {
+        this.title = 'Nuestra Política';
+        this._router.navigate(['movement/profile']);
+    }
+
 }

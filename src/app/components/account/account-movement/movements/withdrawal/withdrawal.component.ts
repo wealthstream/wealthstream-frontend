@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Account, AccountMovement, Customer, MovementTypeEnum } from 'src/app/models';
 import { AlertTypeEnum, TitleEnum } from 'src/app/models/alert-type-enum';
-import { AccountMovementService, AccountService, AlertService, SharedDataService } from 'src/app/services';
+import { AccountMovementService, AccountService, AlertService, IsValidService, SharedDataService } from 'src/app/services';
 
 @Component({
     selector: 'app-withdrawal',
@@ -20,7 +20,10 @@ export class WithdrawalComponent {
     accountMovement!: AccountMovement;
     customer!: Customer;
 
-    constructor(private _alertService: AlertService, private _accountService: AccountService, private _movement: AccountMovementService, public _sharedService: SharedDataService) {}
+    validation: boolean = false;
+
+    constructor(private _alertService: AlertService, private _accountService: AccountService,
+        private _movement: AccountMovementService, public _sharedService: SharedDataService, private _isValid: IsValidService) {}
 
     ngOnInit(): void {
         this.customer = this._sharedService.getCustomer();
@@ -43,6 +46,12 @@ export class WithdrawalComponent {
             value: this.value
         }
 
+        if (!this._isValid.isValid(this.value) || !this._isValid.isValid(this.selectedAccount)) {
+            this.validation = true;
+            return;
+        }
+        
+        this.validation = false;
         this._movement.makeWithdrawal(this.accountMovement).subscribe({
             next: (data) => {
                 if (this.selectedAccount === null || this.selectedAccount === undefined) {

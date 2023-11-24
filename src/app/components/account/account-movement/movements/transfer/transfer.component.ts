@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Account, AccountMovement, Customer, MovementTypeEnum, Transfer } from 'src/app/models';
 import { AlertTypeEnum, TitleEnum } from 'src/app/models/alert-type-enum';
-import { AccountMovementService, AccountService, AlertService, SharedDataService } from 'src/app/services';
+import { AccountMovementService, AccountService, AlertService, IsValidService, SharedDataService } from 'src/app/services';
 
 @Component({
     selector: 'app-transfer',
@@ -23,7 +23,10 @@ export class TransferComponent {
     transfer!: Transfer;
     customer!: Customer;
 
-    constructor(private _alertService: AlertService, private _accountService: AccountService, private _movement: AccountMovementService, private _router: Router, public _sharedService: SharedDataService) {}
+    validation: boolean = false;
+
+    constructor(private _alertService: AlertService, private _accountService: AccountService,
+        private _movement: AccountMovementService, private _router: Router, private _isValid: IsValidService, public _sharedService: SharedDataService) {}
 
     ngOnInit(): void {
         this.customer = this._sharedService.getCustomer();
@@ -37,12 +40,20 @@ export class TransferComponent {
         );
     }
 
+    
     makeTransfer() {
         this.transfer = {
             originAccount: this.selectedAccount?.accountNumber??'',
             destinationAccount: this.destinationAccount,
             value: this.value
         }
+
+        if (!this._isValid.isValid(this.value) || !this._isValid.isValid(this.selectedAccount) || this._isValid.isValid(this.destinationAccount)) {
+            this.validation = true;
+            return;
+        }
+    
+        this.validation = false;
 
         this._movement.makeTransfer(this.transfer).subscribe({
             next: (data) => {

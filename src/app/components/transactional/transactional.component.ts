@@ -20,10 +20,10 @@ export class TransactionalComponent {
         this._customerService.getcustomerByIdentification(identification).subscribe({
             next: (data: Customer) => {
                 if (data.idCus ===  null || data.idCus === undefined) {
-                    this._sharedService.identification = identification;
+                    this._sharedService.setIdentification(identification);
                     this._router.navigate(['/customer']);
                 } else {
-                    this._sharedService.data = data;
+                    this._sharedService.setCustomer(data);
                     this._router.navigate(['/account']);
                 }
             }

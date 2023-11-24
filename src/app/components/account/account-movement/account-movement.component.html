@@ -1,1 +1,44 @@
-<p>account-movement works!</p>
+<mat-sidenav-container class="container">
+    <mat-sidenav mode="side" opened>
+        <div class="content-sidenav__logo">
+            WEALTHSTREAM
+        </div>
+        <div class="content-sidenav">
+            <ul>
+                <li (click)="summarize()">
+                    <mat-icon fontIcon="summarize"></mat-icon>
+                    <span>Reportes</span>
+                </li>
+                <li (click)="deposit()">
+                    <mat-icon fontIcon="attach_money"></mat-icon>
+                    <span>Depósito</span>
+                </li>
+                <li (click)="withdrawal()">
+                    <mat-icon fontIcon="monetization_on"></mat-icon>
+                    <span>Retiro</span>
+                </li>
+                <li (click)="transfer()">
+                    <mat-icon fontIcon="move_up"></mat-icon>
+                    <span>Transferencia</span>
+                </li>
+                <li>
+                    <mat-icon fontIcon="description"></mat-icon>
+                    <span>Nuestra Política</span>
+                </li>
+            </ul>
+        </div>
+        <footer class="footer">
+            &copy; WealthStream C.A. <span>Todos los derechos reservados</span>
+        </footer>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div class="content">
+            <h2>¡Bienvenido! <span>{{ title }}</span></h2>
+
+            <div class="account__content">
+                <router-outlet></router-outlet>
+            </div>
+
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

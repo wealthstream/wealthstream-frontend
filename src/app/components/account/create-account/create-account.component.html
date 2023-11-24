@@ -1,1 +1,31 @@
-<p>create-account works!</p>
+<div class="container contenedor">
+    <div class="account-title">
+        <h2 class="account-title__slogan">¡Hola de nuevo <span class="slogan__names">{{ customer.person?.name }} {{ customer.person?.surname }}</span>!,
+            <span class="account-title__welcome"><span>WealthStream</span> tu socio financiero, te da la bienvenida</span>
+        </h2>
+    </div>
+
+    <div class="account__content">
+        <form action="" class="formulario">
+            <h2>¡Crea tu cuenta para forjar un futuro sólido en la Banca Digital!</h2>
+            <div class="formulario__content">
+                <div class="formulario__data">
+                    <label for="accountType">Tipo de Cuenta</label>
+                    <select name="accountType" id="accountType" [(ngModel)]="accountType">
+                        <option value="">-- Seleccione --</option>
+                        <option [value]="savingType">-- Ahorros --</option>
+                        <option [value]="currentAccount">-- Corriente --</option>
+                    </select>
+                </div>
+                <div class="formulario__data">
+                    <label for="initialBalance">$ Deposito</label>
+                    <input type="number" name="initialBalance" id="initialBalance" placeholder="Ingresa el valor a depositar 0.00"
+                        maxlength="10" [(ngModel)]="initialBalance" step="0.01">
+                </div>
+            </div>
+            <div class="formulario__btn">
+                <button (click)="createAccount()" class="btn">Crear cuenta</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<form class="formulario">
+    <div class="formulario__type-movement">
+        <p>Tipo de Movimiento: <span>{{movementType}}</span></p>
+    </div>
+    <div class="formulario__title">
+        <h3>Titular: <span>{{ customer.person?.name }} {{ customer.person?.surname }}</span></h3>
+        <p>Identificación:<span>{{ customer.person?.identification }}</span></p>
+        <p>Cuenta: <span *ngIf="selectedAccount">{{ selectedAccount.accountType }}</span></p>
+        <p>Saldo Contable:<span *ngIf="selectedAccount">{{ selectedAccount.initialBalance | currency }}</span></p>
+    </div>
+    <div class="formulario__content">
+        <div class="formulario__data">
+            <label for="accountNumber">Número de cuenta</label>
+            <select name="accountNumber" id="accountNumber" [(ngModel)]="selectedAccount">
+                <option value="">-- Seleccione --</option>
+                <option *ngFor="let i of account" [ngValue]="i">{{ i.accountNumber }}</option>
+            </select>
+        </div>
+        <div class="formulario__data">
+            <label for="value">$ Valor</label>
+            <input type="number" name="value" id="value" placeholder="Ingresa tu apellido" [(ngModel)]="value" step="0.01">
+        </div>
+    </div>
+    <div class="formulario__btn">
+        <button (click)="makeWithdrawal()" class="btn">Continuar</button>
+    </div>
+</form>

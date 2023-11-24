@@ -1,0 +1,29 @@
+<div class="table">
+    <table class="table-latitude">
+        <thead>
+            <th>Identificación</th>
+            <th>Nombres</th>
+            <th># Cuenta</th>
+            <th>Tipo de Cuenta</th>
+            <th>Saldo Inicial</th>
+            <th>Tipo de Movimiento</th>
+            <th>Monto</th>
+            <th>Saldo Final</th>
+            <th>Fecha</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let i of accountMovements">
+                <td>{{ i.idAcc?.idCus?.person?.identification }}</td>
+                <td>{{ i.idAcc?.idCus?.person?.name }} {{ i.idAcc?.idCus?.person?.surname }}</td>
+                <td>{{ i.idAcc?.accountNumber }}</td>
+                <td>{{ i.idAcc?.accountType | titlecase }}</td>
+                <td *ngIf="i.movementType === deposit">{{ ((i.balance??0) - (i.value??0)) | currency }}</td>
+                <td *ngIf="i.movementType === withdrawal">{{ ((i.balance??0) + (i.value??0)) | currency }}</td>
+                <td>{{ i.movementType | titlecase }}</td>
+                <td>{{ i.value | currency }}</td>
+                <td>{{ i.balance | currency }}</td>
+                <td>{{ i.date | date:'HH:mm:ss' }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

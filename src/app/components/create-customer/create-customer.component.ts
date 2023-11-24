@@ -23,29 +23,11 @@ export class CreateCustomerComponent {
     phone: string = ''
     address: string = '';
 
-    customer: Customer = {
-        idCus: '',
-        person: {
-            idPer: '',
-            name: '',
-            surname: '',
-            identification: '',
-            gender: '',
-            age: 0,
-            address: '',
-            phone: ''
-        },
-        email: '',
-        password: '',
-        state: false
-    };
+    customer!: Customer;
 
-
-    constructor(private _customerService: CustomerService, private _sharedService: SharedDataService, private _alertService: AlertService, router: Router) { }
+    constructor(private _customerService: CustomerService, private _sharedService: SharedDataService, private _alertService: AlertService, private _router: Router) { }
 
     ngOnInit(): void {
-        console.log(this._sharedService.identification);
-        console.log(this._sharedService.data);
     }
 
     createCustomer() {
@@ -65,17 +47,19 @@ export class CreateCustomerComponent {
             email: this.email,
             state: true
         }
-        this._customerService.createCustomer(this.customer).subscribe(
-            (data) => {
+        this._customerService.createCustomer(this.customer).subscribe({
+            next: (data) => {
                 if (data.body !== null) {
                     this.showAlert(TitleEnum.Ok, 'Te has registrado exitosamente!', AlertTypeEnum.Ok);
+                    this._sharedService.setCustomer(data.body);
+                    this._router.navigate(['/account']);
                 } else {
                     this.showAlert(TitleEnum.Warning, 'Ya te encuentras registrado!', AlertTypeEnum.Warning);
                 }
-            }, (error) => {
+            }, error: () => {
                 this.showAlert(TitleEnum.Error, 'Nos encontramos fuera de servicio, intentalo más tarde!', AlertTypeEnum.Error);
             }
-        );
+        });
     }
 
     showAlert(title: TitleEnum, message: string, type: AlertTypeEnum) {

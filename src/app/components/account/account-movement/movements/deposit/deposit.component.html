@@ -15,15 +15,19 @@
                 <option value="">-- Seleccione --</option>
                 <option *ngFor="let i of account" [ngValue]="i">{{ i.accountNumber }}</option>
             </select>
-            <span class="validation" *ngIf="validation && !selectedAccount">*Debes seleccionar el número de cuenta.</span>
+            <span class="validation" *ngIf="validation && !selectedAccount">*Debes seleccionar el número de
+                cuenta.</span>
         </div>
         <div class="formulario__data">
             <label for="value">$ Valor</label>
-            <input type="number" name="value" id="value" placeholder="Ingresa tu apellido" [(ngModel)]="value" step="0.01">
+            <input type="number" name="value" id="value" placeholder="Ingresa tu apellido" [(ngModel)]="value"
+                step="0.01">
             <span class="validation" *ngIf="validation && !value">*El valor debe ser mayor que cero.</span>
         </div>
     </div>
     <div class="formulario__btn">
-        <button (click)="makeDeposit()" class="btn">Continuar</button>
+        <button (click)="makeDeposit()" class="btn">
+            <span>Depositar</span>
+        </button>
     </div>
 </form>

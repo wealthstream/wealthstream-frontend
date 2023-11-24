@@ -18,24 +18,32 @@
     }
 }
 
-@mixin boton($bgColor, $colorTexto) {
-    background-color: $bgColor;
-    border-radius: 0.3rem;
-    cursor: pointer;
-    padding: 2rem 2rem;
+@mixin boton($bgColor, $colorTexto, $bgHover) {
+    background-color: #fff;
+    align-items: center;
+    border: 1px solid $bgColor;
     color: $colorTexto;
+    display: flex;
+    justify-content: center;
     font-size: 1.6rem;
-    display: inline-block;
-    font-weight: 500;
-    outline: none;
-    text-align: center;
-    transition: background-color;
-    transition-duration: 300ms;
+    padding: 1rem;
+    cursor: pointer;
+    position: relative;
 
-    @include tablet {
+    ::before {
+        content: "";
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        transition: all 1s ease;
+        width: 0;
     }
-    &:hover {
-        background-color: lighten($bgColor, 10%);
+
+    :hover::before {
+        background: $bgHover;
+        border: none;
+        width: 100%;
     }
 }
 

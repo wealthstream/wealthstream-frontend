@@ -13,11 +13,13 @@ export class AccountMovementComponent {
     title: string = '';
     identification = '';
     nameCustomer: string = '';
-    movementType!: AccountMovement[];
+    movement: Date = new Date;
+    customer!: Customer;
 
     constructor(private _alertService: AlertService, private _accountService: AccountService, private _movement: AccountMovementService, private _router: Router, public _sharedService: SharedDataService) {}
 
     ngOnInit(): void {
+        this.customer = this._sharedService.getCustomer();
     }
 
     summarize() {
@@ -41,8 +43,12 @@ export class AccountMovementComponent {
     }
 
     profile() {
-        this.title = 'Nuestra Política';
+        this.title = 'Tu perfil';
         this._router.navigate(['movement/profile']);
+    }
+
+    signOut() {
+        this._router.navigate(['/transactional']);
     }
 
 }

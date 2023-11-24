@@ -4,6 +4,7 @@
 .spacing {
     height: 100vh;
     width: 100vw;
+    border: 1px solid;
 }
 
 .header {
@@ -66,7 +67,7 @@
     }
 
     &__btn {
-        @include mixins.boton(variables.$background-header, variables.$blanco);
+        @include mixins.boton(variables.$background-header, variables.$blanco, variables.$primario);
     }
 }
 

@@ -26,10 +26,9 @@
 }
 
 .btn {
-    border: none;
     width: auto;
     margin: 0 auto;
-    @include mixins.boton(variables.$background-header, variables.$blanco);
+    @include mixins.boton(variables.$terciario, variables.$terciario, variables.$terciario-gris);
 }
 
 .validation {

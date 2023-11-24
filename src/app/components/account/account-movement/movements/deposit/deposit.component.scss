@@ -13,7 +13,7 @@
     }
 
     &__content {
-        @include mixins.display
+        @include mixins.display;
     }
 
     &__data {
@@ -26,10 +26,9 @@
 }
 
 .btn {
-    border: none;
     width: auto;
     margin: 0 auto;
-    @include mixins.boton(variables.$background-header, variables.$blanco);
+    @include mixins.boton(variables.$primario, variables.$primario, variables.$primario-gris);
 }
 
 .validation {

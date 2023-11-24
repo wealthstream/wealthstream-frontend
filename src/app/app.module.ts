@@ -22,6 +22,7 @@ import { TransferComponent } from './components/account/account-movement/movemen
 import { WithdrawalComponent } from './components/account/account-movement/movements/withdrawal/withdrawal.component';
 import { OurPolicyComponent } from './components/our-policy/our-policy.component';
 import { ProfileComponent } from './components/account/account-movement/profile/profile.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
 	declarations: [
@@ -37,6 +38,7 @@ import { ProfileComponent } from './components/account/account-movement/profile/
   WithdrawalComponent,
   OurPolicyComponent,
   ProfileComponent,
+  LoginComponent,
 	],
 	imports: [
 		BrowserModule,

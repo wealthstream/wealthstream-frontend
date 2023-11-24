@@ -93,7 +93,12 @@
             border: none;
             display: inline-block;
             width: 100%;
-            @include mixins.boton(variables.$background-header, variables.$blanco);
+
+  
+
+                margin: 0 auto;
+                @include mixins.boton(variables.$primario, variables.$primario, variables.$primario-gris);
+  
         }
     }
 }

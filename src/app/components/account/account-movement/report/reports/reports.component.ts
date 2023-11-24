@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AccountMovement, MovementTypeEnum } from 'src/app/models';
-import { AccountMovementService } from 'src/app/services';
+import { AccountMovementService, CustomerService, SharedDataService } from 'src/app/services';
+import { Customer } from '../../../../../models/customer.model';
 
 @Component({
     selector: 'app-reports',
@@ -13,13 +14,14 @@ export class ReportsComponent {
     withdrawal: string = MovementTypeEnum.withdrawal;
     
     accountMovements!: AccountMovement[];
+    customer!: Customer;
 
-    constructor(private _movementService: AccountMovementService) {}
+    constructor(private _movementService: AccountMovementService, private _sharedService: SharedDataService) {}
 
     ngOnInit(): void {
-        this._movementService.getMovementsByIdentification('0850266248').subscribe({
+        this.customer = this._sharedService.getCustomer();
+        this._movementService.getMovementsByIdentification(this.customer.person?.identification??'').subscribe({
             next: (data) => {
-                console.log("DATA ", data);
                 this.accountMovements = data;
             }
         });

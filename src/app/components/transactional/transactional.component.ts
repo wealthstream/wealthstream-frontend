@@ -24,7 +24,7 @@ export class TransactionalComponent {
                     this._router.navigate(['/customer']);
                 } else {
                     this._sharedService.setCustomer(data);
-                    this._router.navigate(['/account']);
+                    this._router.navigate(['/login']);
                 }
             }
         });

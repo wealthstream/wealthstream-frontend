@@ -11,6 +11,7 @@ import { TransferComponent } from './components/account/account-movement/movemen
 import { ReportsComponent } from './components/account/account-movement/report/reports/reports.component';
 import { OurPolicyComponent } from './components/our-policy/our-policy.component';
 import { ProfileComponent } from './components/account/account-movement/profile/profile.component';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
     { path: "customer", component: CreateCustomerComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
             { path: "profile", component: ProfileComponent }
         ]
     },
+    { path: "login", component: LoginComponent }
 ];
 
 @NgModule({

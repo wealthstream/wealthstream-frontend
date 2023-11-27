@@ -1,8 +1,7 @@
 <div class="spacing">
-	<header class="header" *ngIf="false">
+	<header class="header" *ngIf="showBanner">
 		<div class="header__grid contenedor">
 			<div class="header__menu">
-				<!-- <img src="build/img/logo.svg" alt="Logo Carolina Spa"> -->
 				Menú
 			</div>
 	
@@ -23,7 +22,7 @@
 	
 	<router-outlet></router-outlet>
 	
-	<footer class="footer" *ngIf="false">
+	<footer class="footer" *ngIf="showBanner">
 		&copy; WealthStream C.A. Todos los derechos reservados
 	</footer>
 </div>

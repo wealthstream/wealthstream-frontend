@@ -1,10 +1,9 @@
 @use "../scss/mixins";
 @use "../scss/variables";
 
+
 .spacing {
     height: 100vh;
-    width: 100vw;
-    border: 1px solid;
 }
 
 .header {
@@ -12,9 +11,7 @@
     padding: 1rem;
 
     &__grid {
-        align-items: center;
-        display: flex;
-        flex-direction: column;
+        @include mixins.display(true, false, true, false);
 
         @include mixins.tablet {
             flex-direction: row;
@@ -25,21 +22,20 @@
     &__logo {
         color: variables.$background-header;
         text-transform: uppercase;
-        font-size: 2.5rem;
-        font-weight: 600;
+
+        @include mixins.font(2.5rem, 600);
     }
 }
 
 .nav {
-    display: flex;
-    flex-direction: column;
     gap: 1.5rem;
     margin-top: 3rem;
+    @include mixins.display(true, false, false, false);
 
     @include mixins.tablet {
-        align-items: center;
         flex-direction: row;
         gap: 3rem;
+        @include mixins.display(false, false, true, false);
         margin-top: 0;
     }
 
@@ -57,7 +53,6 @@
             width: 0;
             height: 1px;
             background: variables.$gris-claro;
-
             transition: width 0.3s ease-in;
         }
 
@@ -67,7 +62,7 @@
     }
 
     &__btn {
-        @include mixins.boton(variables.$background-header, variables.$blanco, variables.$primario);
+        @include mixins.boton(variables.$background-header, variables.$primario);
     }
 }
 

@@ -3,49 +3,47 @@
         <div class="transactional__content contenedor">
             <div class="transactional__bg">
                 <div class="title">
-                    <h3>Abre tu Cuenta de Ahorro Transaccional</h3>
-                    <p>Guarda tu dinero de manera segura y utilízalo cuando lo necesites para realizar transferencias o
-                        pagos
-                    </p>
+                    <h3 class="title__main">Abre tu Cuenta de Ahorro Transaccional</h3>
+                    <p class="title__description">Guarda tu dinero de manera segura y utilízalo cuando lo necesites para
+                        realizar transferencias o pagos</p>
                 </div>
             </div>
-
             <div class="card">
                 <form class="form">
-                    <h2>¡Empecemos! <span>Ingresa tus datos</span></h2>
+                    <h2 class="form__heading">¡Empecemos! <span class="form__subheading">Ingresa tus datos</span></h2>
                     <div class="form__data">
-                        <label for="identification">Cédula</label>
-                        <input type="text" name="identification" id="identification" placeholder="Ingresa tu número de cédula"
-                            maxlength="10" [(ngModel)]="identification">
+                        <label for="identification" class="form__label">Cédula</label>
+                        <input type="text" name="identification" id="identification"
+                            class="form__input" placeholder="Ingresa tu número de cédula" maxlength="10"
+                            [(ngModel)]="identification">
                     </div>
-                    <button (click)="serachCustomer(identification)" class="form__btn">Continuar</button>
+                    <button (click)="searchCustomer(identification)" [disabled]="disable" class="form__btn" [ngClass]="{ 'form__btn-disable' :  disable }">Continuar</button>
                 </form>
             </div>
         </div>
     </div>
     <div class="info contenedor">
-        <p>Ábrela en <span>minutos</span></p>
-        <p>Depósito inical <span>$0</span></p>
-        <p>Edad requerida <span>+18 años</span></p>
-        <p>Cédula <span>Ecuatoriana</span></p>
+        <p class="info__item">Ábrela en <span class="info__detail">minutos</span></p>
+        <p class="info__item">Depósito inicial <span class="info__detail">$0</span></p>
+        <p class="info__item">Edad requerida <span class="info__detail">+18 años</span></p>
+        <p class="info__item">Cédula <span class="info__detail">Ecuatoriana</span></p>
     </div>
-
     <main class="main">
-        <h2 class="main_title">Características de la cuenta</h2>
+        <h2 class="main__title">Características de la cuenta</h2>
         <div class="main__content contenedor">
-            <div class="content__info">
-                <div class="content__icon">
+            <div class="content-info">
+                <div class="content-icon">
                     <mat-icon fontIcon="attach_money"></mat-icon>
                 </div>
-                <h3 class="content__title">Transfiere dinero</h3>
-                <p class="content__text">Recibe tu sueldo, depósitos, transferencias y realiza pagos a terceros.</p>
+                <h3 class="content-title">Transfiere dinero</h3>
+                <p class="content-text">Recibe tu sueldo, depósitos, transferencias y realiza pagos a terceros.</p>
             </div>
-            <div class="content__info">
-                <div class="content__icon">
+            <div class="content-info">
+                <div class="content-icon">
                     <mat-icon fontIcon="laptop_mac"></mat-icon>
                 </div>
-                <h3 class="content__title">Controla tus movimientos</h3>
-                <p class="content__text">Revisa tu dinero en nuestra Banca Web! en tiempo real.</p>
+                <h3 class="content-title">Controla tus movimientos</h3>
+                <p class="content-text">Revisa tu dinero en nuestra Banca Web! en tiempo real.</p>
             </div>
         </div>
     </main>

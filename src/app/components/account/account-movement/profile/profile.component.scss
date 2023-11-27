@@ -1,48 +1,32 @@
 @use "../../../../../scss/variables";
 @use "../../../../../scss/mixins";
 
-.formulario {
+.form {
     @include mixins.form;
 
     &__content {
-        display: flex;
-        flex-direction: column;
+        @include mixins.display(true, false, false, false);
         padding-bottom: 3rem;
     }
 
-    &__data-info {
-        display: flex;
-        gap: 2rem;
+    &__account-info,
+    &__personal-info {
+        @include mixins.display(false, true, false, true);
         flex-wrap: wrap;
-        
-        @include mixins.title;
-
-        div {
-            display: flex;
-            gap: 2rem;
-        }
-
     }
 
     &__body {
-        display: flex;
-        gap: 2rem;
-        justify-content: space-between;
-        align-items: center;
+        @include mixins.display(false, true, true, true);
     }
 
     &__data {
-        display: flex;
-        flex-direction: column;
+        @include mixins.display(true, false, false, true);
         label {
             margin-bottom: 0.5rem;
         }
     
         input {
-            border-radius: 0.3rem;
-            border: 1px solid lighten(variables.$gris, 30%);
-            outline: none;
-            padding: 1.5rem;
+            @include mixins.border;
         }
     }
 
@@ -51,22 +35,14 @@
     }
 }
 
-.data-info__account {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-}
-
-.account {
+.account-info {
     p {
-        font-size: 1.6rem;
-        font-weight: 600;
+        @include mixins.font(1.6rem, 600);
         color: variables.$gris;
         span {
             display: block;
             margin-top: 0.5rem;
-            font-family: 500;
-            font-size: 1.3rem;
+            @include mixins.font(1.3rem, 500);
         }
     }
 }
@@ -74,5 +50,9 @@
 .btn {
     width: auto;
     margin: 0 auto;
-    @include mixins.boton(variables.$gris, variables.$gris, variables.$gris-bg);
+    @include mixins.boton(variables.$gris, variables.$gris-bg);
+}
+
+.validation {
+    @include mixins.validation;
 }

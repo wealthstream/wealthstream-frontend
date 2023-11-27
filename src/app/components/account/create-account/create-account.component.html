@@ -1,30 +1,33 @@
 <div class="container contenedor">
     <div class="account-title">
         <h2 class="account-title__slogan">¡Hola de nuevo <span class="slogan__names">{{ customer.person?.name }} {{ customer.person?.surname }}</span>!,
-            <span class="account-title__welcome"><span>WealthStream</span> tu socio financiero, te da la bienvenida</span>
+            <span class="account-title__welcome"><span class="welcome__brand">WealthStream</span> tu socio financiero, te da la bienvenida</span>
         </h2>
     </div>
 
     <div class="account__content">
-        <form action="" class="formulario">
-            <h2>¡Crea tu cuenta para forjar un futuro sólido en la Banca Digital!</h2>
-            <div class="formulario__content">
-                <div class="formulario__data">
-                    <label for="accountType">Tipo de Cuenta</label>
-                    <select name="accountType" id="accountType" [(ngModel)]="accountType">
+        <form action="" class="form">
+            <h2 class="form__heading">¡Crea tu cuenta para forjar un futuro sólido en la Banca Digital!</h2>
+            <div class="form__content">
+                <div class="form__data">
+                    <label for="accountType" class="data__label">Tipo de Cuenta</label>
+                    <select name="accountType" id="accountType" class="data__select" [(ngModel)]="accountType">
                         <option value="">-- Seleccione --</option>
                         <option [value]="savingType">-- Ahorros --</option>
                         <option [value]="currentAccount">-- Corriente --</option>
                     </select>
+                    <span class="validation" *ngIf="validation && !accountType">*Debes seleccionar el tipo de cuenta.</span>
                 </div>
-                <div class="formulario__data">
-                    <label for="initialBalance">$ Deposito</label>
-                    <input type="number" name="initialBalance" id="initialBalance" placeholder="Ingresa el valor a depositar 0.00"
+                <div class="form__data">
+                    <label for="initialBalance" class="data__label">Depósito</label>
+                    <input type="number" name="initialBalance" id="initialBalance" class="data__input" placeholder="Ingresa el valor a depositar 0.00"
                         maxlength="10" [(ngModel)]="initialBalance" step="0.01">
                 </div>
             </div>
-            <div class="formulario__btn">
-                <button (click)="createAccount()" class="btn">Crear cuenta</button>
+            <div class="form__btn">
+                <button (click)="createAccount()" class="btn">
+                    <span>Crear cuenta</span>
+                </button>
             </div>
         </form>
     </div>

@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { AccountType, Customer } from 'src/app/models';
-import { AccountService, AlertService, SharedDataService } from 'src/app/services';
+import { AccountService, AlertService, IsValidService, SharedDataService } from 'src/app/services';
 import { Account } from '../../../models/account.model';
 import { AlertTypeEnum, TitleEnum } from 'src/app/models/alert-type-enum';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
     selector: 'app-create-account',
@@ -21,13 +22,29 @@ export class CreateAccountComponent {
     savingType: string = AccountType.saving.toString();
     currentAccount: string = AccountType.currrent.toString();
 
-    constructor(private _accountService: AccountService, private _alertService: AlertService, private _router: Router, public _sharedService: SharedDataService) {}
+    validation: boolean = false;
+
+    constructor(private _accountService: AccountService, private _alertService: AlertService, 
+        private _router: Router, public _sharedService: SharedDataService, private _isValid: IsValidService, private _location: Location) {}
 
     ngOnInit(): void {
-        this.customer = this._sharedService.getCustomer();
+        // this.customer = this._sharedService.getCustomer();
+        // if (this._location.path().startsWith('/login') || this._location.path() === '/movement' ||
+        //     this._location.path() === '/movement/profile' || this._location.path() === '/movement/summarize' ||
+        //     this._location.path() === '/movement/deposit' || this._location.path() === '/movement/withdrawal' ||
+        //     this._location.path() === '/movement/transfer') {
+        //     this.showBanner = false;
+        // }
     }
 
     createAccount() {
+        if (!this._isValid.isValid(this.accountType)) {
+            this.validation = true;
+            return;
+        }
+
+        this.validation = false;
+
         this.account = {
             idCus: {
                 idCus: this.customer.idCus,
@@ -60,4 +77,6 @@ export class CreateAccountComponent {
         this.accountType = '';
         this.initialBalance = 0.0;
     }
+
+    
 }

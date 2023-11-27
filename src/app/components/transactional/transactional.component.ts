@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Customer } from 'src/app/models';
-import { CustomerService, SharedDataService } from 'src/app/services';
+import { AlertTypeEnum, TitleEnum } from 'src/app/models/alert-type-enum';
+import { AlertService, CustomerService, SharedDataService } from 'src/app/services';
 
 @Component({
     selector: 'app-transactional',
@@ -10,13 +11,20 @@ import { CustomerService, SharedDataService } from 'src/app/services';
 })
 export class TransactionalComponent {
     identification: string = '';
+    disable: boolean = false;
 
-    constructor(private _router: Router, private _customerService: CustomerService, private _sharedService: SharedDataService) {}
+    constructor(private _router: Router, private _customerService: CustomerService, private _sharedService: SharedDataService, private _alertService: AlertService) {}
 
     ngOnInit(): void {
+        // if (this.identification === null || this.identification === undefined || this.identification === '') {
+        //     this.disable = true;
+        // }
     }
 
-    serachCustomer(identification: string) {
+    searchCustomer(identification: string) {
+        if (identification.length < 10) {
+            this.showAlert(TitleEnum.Warning, 'La identificación ingresada es inválida', AlertTypeEnum.Warning);
+        }
         this._customerService.getcustomerByIdentification(identification).subscribe({
             next: (data: Customer) => {
                 if (data.idCus ===  null || data.idCus === undefined) {
@@ -28,5 +36,9 @@ export class TransactionalComponent {
                 }
             }
         });
+    }
+
+    showAlert(title: TitleEnum, message: string, type: AlertTypeEnum) {
+        this._alertService.showAlert({ title, message, type });
     }
 }

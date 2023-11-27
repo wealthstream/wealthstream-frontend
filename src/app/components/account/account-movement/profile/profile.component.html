@@ -1,14 +1,14 @@
-<form class="formulario">
-    <div class="formulario__content">
-        <div class="data-info__account">
-            <div *ngFor="let i of account" class="account">
+<form class="form">
+    <div class="form__content">
+        <div class="form__account-info">
+            <div *ngFor="let i of account" class="account-info">
                 <p>{{ i.accountType | titlecase }}:
                     {{ i.accountNumber }}
                     <span>Monto: {{ i.initialBalance | currency }}</span>
                 </p>
             </div>
         </div>
-        <div class="formulario__data-info">
+        <div class="form__personal-info">
             <p>Cédula:
                 <span>{{ customer.person?.identification }}</span>
             </p>
@@ -19,23 +19,27 @@
                 <span>{{ customer.person?.gender === '0' ? 'F' : 'M' }}</span>
             </p>
         </div>
-        <div class="formulario__body">
-            <div class="formulario__data">
+        <div class="form__body">
+            <div class="form__data">
                 <label for="email">Correo</label>
                 <input type="email" name="email" id="email" placeholder="example@mail.com" [(ngModel)]="email">
+                <span class="validation" *ngIf="validation && !email">*Debes ingresar tu correo.</span>
+                <span class="validation" *ngIf="validation && checkEmail">*Debes ingresar un correo válido.</span>
             </div>
-            <div class="formulario__data">
-                <label for="phone">Telefono</label>
+            <div class="form__data">
+                <label for="phone">Teléfono</label>
                 <input type="tel" name="phone" id="phone" placeholder="Ingresa tu número de teléfono" [(ngModel)]="phone" maxlength="10">
+                <span class="validation" *ngIf="validation && !phone">*Debes ingresar tu teléfono.</span>
             </div>
-            <div class="formulario__data">
+            <div class="form__data">
                 <label for="address">Dirección</label>
-                <input type="text" name="address" id="address" placeholder="Ingresa tu número de dirección" [(ngModel)]="address">
+                <input type="text" name="address" id="address" placeholder="Ingresa tu dirección" [(ngModel)]="address">
+                <span class="validation" *ngIf="validation && !address">*Debes ingresar tu dirección.</span>
             </div>
         </div>
     </div>
-    <div class="formulario__btn">
-        <button class="btn">
+    <div class="form__button">
+        <button (click)="updateProfile()" class="btn">
             <span>Editar</span>
         </button>
     </div>

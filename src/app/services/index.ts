@@ -5,3 +5,4 @@ export { StorageService } from './storage.service';
 export { AccountService } from './account.service';
 export { AccountMovementService } from './account-movement.service';
 export { IsValidService } from './is-valid.service';
+export { ValidatePasswordService } from './validate-password.service';

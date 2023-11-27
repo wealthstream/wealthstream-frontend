@@ -1,55 +1,55 @@
 <mat-sidenav-container class="container">
     <mat-sidenav mode="side" opened>
-        <div class="sidenav-content">
-            <div class="content-sidenav__logo">
+        <div class="sidenav">
+            <div class="sidenav__logo">
                 WEALTHSTREAM
             </div>
-            <div class="content-sidenav">
-                <div class="content-sidenav__profile">
-                    <div class="content-sidenav__bg"></div>
-                    <p class="content-sidenav__names"> {{customer.person?.name}} {{customer.person?.surname}}
-                        <span>Ultimo acceso {{ movement | date:'MMM/dd HH:mm:ss' }}</span>
+            <div class="sidenav__content">
+                <div class="sidenav__profile">
+                    <div class="sidenav__profile-bg"></div>
+                    <p class="sidenav__profile-names"> {{customer.person?.name}} {{customer.person?.surname}}
+                        <span>Último acceso {{ movement | date:'MMM/dd HH:mm:ss' }}</span>
                     </p>
                 </div>
-                <ul>
-                    <li (click)="profile()">
+                <ul class="sidenav__menu">
+                    <li (click)="profile()" class="sidenav__menu-item">
                         <mat-icon fontIcon="account_circle"></mat-icon>
                         <span>Perfil</span>
                     </li>
-                    <li (click)="summarize()">
+                    <li (click)="summarize()" class="sidenav__menu-item">
                         <mat-icon fontIcon="summarize"></mat-icon>
                         <span>Reportes</span>
                     </li>
-                    <li (click)="deposit()">
+                    <li (click)="deposit()" class="sidenav__menu-item">
                         <mat-icon fontIcon="attach_money"></mat-icon>
                         <span>Depósito</span>
                     </li>
-                    <li (click)="withdrawal()">
+                    <li (click)="withdrawal()" class="sidenav__menu-item">
                         <mat-icon fontIcon="monetization_on"></mat-icon>
                         <span>Retiro</span>
                     </li>
-                    <li (click)="transfer()">
+                    <li (click)="transfer()" class="sidenav__menu-item">
                         <mat-icon fontIcon="move_up"></mat-icon>
                         <span>Transferencia</span>
                     </li>
                 </ul>
 
-                <div class="content-sidenav-btn">
+                <div class="sidenav__logout">
                     <button (click)="signOut()" class="btn">
                         <span>Salir</span>
                     </button>
                 </div>
             </div>
-            <footer class="footer">
+            <footer class="sidenav__footer">
                 &copy; WealthStream C.A. <span>Todos los derechos reservados</span>
             </footer>
         </div>
     </mat-sidenav>
     <mat-sidenav-content>
         <div class="content">
-            <h2>¡Bienvenido! <span>{{ title }}</span></h2>
+            <h2 class="content__heading">¡Bienvenido! <span>{{ title }}</span></h2>
 
-            <div class="account__content">
+            <div class="content__account">
                 <router-outlet></router-outlet>
             </div>
 

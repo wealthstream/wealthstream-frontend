@@ -1,15 +1,15 @@
-<form class="formulario">
-    <div class="formulario__type-movement">
+<form class="form">
+    <div class="form__type-movement">
         <p>Tipo de Movimiento: <span>{{ movementType | titlecase }}</span></p>
     </div>
-    <div class="formulario__title">
+    <div class="form__title">
         <h3>Titular: <span>{{ customer.person?.name }} {{ customer.person?.surname }}</span></h3>
         <p>Identificación:<span>{{ customer.person?.identification }}</span></p>
         <p>Cuenta: <span *ngIf="selectedAccount">{{ selectedAccount.accountType | titlecase }}</span></p>
         <p>Saldo Contable:<span *ngIf="selectedAccount">{{ selectedAccount.initialBalance | currency }}</span></p>
     </div>
-    <div class="formulario__content">
-        <div class="formulario__data">
+    <div class="form__content">
+        <div class="form__data">
             <label for="accountNumber">Número de cuenta</label>
             <select name="accountNumber" id="accountNumber" [(ngModel)]="selectedAccount">
                 <option value="">-- Seleccione --</option>
@@ -17,13 +17,13 @@
             </select>
             <span class="validation" *ngIf="validation && !selectedAccount">*Debes seleccionar el número de cuenta.</span>
         </div>
-        <div class="formulario__data">
+        <div class="form__data">
             <label for="value">$ Valor</label>
             <input type="number" name="value" id="value" placeholder="Ingresa tu apellido" [(ngModel)]="value" step="0.01">
             <span class="validation" *ngIf="validation && !value">*El valor debe ser mayor que cero.</span>
         </div>
     </div>
-    <div class="formulario__btn">
+    <div class="form__btn">
         <button (click)="makeWithdrawal()" class="btn">
             <span>Retirar</span>
         </button>

@@ -18,17 +18,16 @@
     }
 }
 
-@mixin boton($bgColor, $colorTexto, $bgHover) {
+@mixin boton($color, $bgHover) {
     background-color: #fff;
-    align-items: center;
-    border: 1px solid $bgColor;
-    color: $colorTexto;
-    display: flex;
-    justify-content: center;
+    border: 1px solid $color;
+    color: $color;
     font-size: 1.6rem;
     padding: 1rem;
     cursor: pointer;
     position: relative;
+
+    @include display(true, false, true, true);
 
     ::before {
         content: "";
@@ -47,10 +46,19 @@
     }
 }
 
+@mixin boton-disable {
+    &:disabled {
+        background: rgb(170, 170, 170);
+        background: linear-gradient(90deg, rgba(170, 170, 170, 1) 0%, rgba(198, 198, 198, 1) 99%);
+        border: none;
+        cursor: default;
+        color: gray;
+    }
+}
+
 @mixin validation {
     color: #dc3545;
-    font-size: 1.2rem;
-    font-weight: 600;
+    @include font(1.2rem, 600);
     padding-top: 0.5rem;
 }
 
@@ -61,97 +69,52 @@
     margin: 0 auto;
 }
 
-@mixin header {
-    p {
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
-        color: variables.$gris;
-
-        span {
-            font-weight: 600;
-        }
-    }
-}
-
-@mixin title {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-    gap: 3rem;
-
-    h3 {
-        color: lighten(variables.$background-header, 10%);
-    }
-
-    p {
-        font-size: 1.6rem;
-        font-weight: 600;
-        color: variables.$gris;
-        span {
-            color: variables.$gris;
-            margin-left: 0.5rem;
-            text-align: left;
-        }
-    }
-}
-
-@mixin display {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    justify-content: space-between;
-    margin: 5rem 0 5rem 0;
-    width: 100%;
-}
-
 @mixin content {
-    display: flex;
-    flex-direction: column;
+    @include display(column, false, false, false);
     width: calc(50% - 2rem);
+}
 
-    label {
-        margin-bottom: 0.5rem;
+@mixin color($color) {
+    color: lighten($color, 10%);
+}
+
+@mixin font($font-size, $font-weight) {
+    font-size: $font-size;
+    font-weight: $font-weight;
+}
+
+@mixin display($direction: false, $gap: false, $aling: false, $justify: false) {
+    display: flex;
+
+    @if $direction {
+        flex-direction: column;
     }
 
-    input,
-    select {
-        border-radius: 0.3rem;
-        border: 1px solid lighten(variables.$gris, 30%);
-        outline: none;
-        padding: 1.5rem;
+    @if $gap {
+        gap: 2rem;
     }
 
-    select {
-        cursor: pointer;
+    @if $aling {
+        align-items: center;
+    }
+
+    @if $justify {
+        justify-content: space-between;
     }
 }
 
-// @mixin grid($columnas, $espaciado ) {
-//     display: grid;
-//     gap: $espaciado;
-//     grid-template-columns: repeat($columnas, 1fr);
-// }
+@mixin border {
+    border-radius: 0.3rem;
+    border: 1px solid lighten(variables.$gris, 30%);
+    outline: none;
+    padding: 1.5rem;
+}
 
-// @mixin headingCursiva {
-//     color: v.$secundario;
-//     font-family: v.$fuenteCursiva;
-//     font-size: 4rem;
-//     font-weight: 400;
-//     line-height: .8;
-//     text-align: center;
-//     text-transform: lowercase;
+@mixin img($url, $bgSize: false) {
+    background-image: url($url);
+    background-repeat: no-repeat;
 
-//     span {
-//         color: v.$negro;
-//         display: block;
-//         font-family: v.$fuentePrincipal;
-//         text-transform: uppercase;
-//     }
-// }
-
-// @mixin heading {
-//     font-weight: 400;
-//     font-size: 4rem;
-//     text-transform: uppercase;
-//     text-align: center;
-// }
+    @if $bgSize {
+        background-size: cover;
+    }
+}

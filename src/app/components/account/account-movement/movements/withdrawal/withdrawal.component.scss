@@ -1,24 +1,62 @@
 @use "../../../../../../scss/variables";
 @use "../../../../../../scss/mixins";
 
-.formulario {
+.form {
     @include mixins.form;
 
     &__type-movement {
-        @include mixins.header;
+        p {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: variables.$gris;
+
+            span {
+                font-weight: 600;
+            }
+        }
     }
 
     &__title {
-        @include mixins.title;
+        @include mixins.display(false, true, true, true);
+
+        h3 {
+            color: lighten(variables.$background-header, 10%);
+        }
+
+        p {
+            @include mixins.font(1.6rem, 600);
+            color: variables.$gris;
+            span {
+                color: variables.$gris;
+                margin-left: 0.5rem;
+                text-align: left;
+            }
+        }
     }
 
     &__content {
-        @include mixins.display
+        @include mixins.display(false, true, false, true);
+        flex-wrap: wrap;
+        margin: 5rem 0 5rem 0;
+        width: 100%;
     }
 
     &__data {
         @include mixins.content;
-    }
+
+        label {
+            margin-bottom: 0.5rem;
+        }
+    
+        input,
+        select {
+            @include mixins.border;
+        }
+    
+        select {
+            cursor: pointer;
+        }
+    }   
 
     &__btn {
         text-align: center;
@@ -28,7 +66,7 @@
 .btn {
     width: auto;
     margin: 0 auto;
-    @include mixins.boton(variables.$secundario, variables.$secundario, variables.$secundario-gris);
+    @include mixins.boton(variables.$primario, variables.$primario-gris);
 }
 
 .validation {

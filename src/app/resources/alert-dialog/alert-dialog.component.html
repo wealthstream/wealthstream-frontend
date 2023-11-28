@@ -1,5 +1,26 @@
-<div [ngClass]="alertType">
-    <div class="background success-animation"></div>
-    <h3 class="alert__title">{{ title }}</h3>
-    <p class="alert__message">{{ message }}</p>
+<div class="f-modal-alert">
+    <div [ngClass]="alertType" class="f-modal-icon animate" *ngIf="alertType?.toString() === 'f-modal-success'">
+        <span class="f-modal-line f-modal-tip animateSuccessTip"></span>
+        <span class="f-modal-line f-modal-long animateSuccessLong"></span>
+        <div class="f-modal-placeholder"></div>
+        <div class="f-modal-fix"></div>
+    </div>
+    <div [ngClass]="alertType" class="f-modal-icon f-modal-error animate"
+        *ngIf="alertType?.toString() === 'f-modal-error'">
+        <span class="f-modal-x-mark">
+            <span class="f-modal-line f-modal-left animateXLeft"></span>
+            <span class="f-modal-line f-modal-right animateXRight"></span>
+        </span>
+        <div class="f-modal-placeholder"></div>
+        <div class="f-modal-fix"></div>
+    </div>
+    <div [ngClass]="alertType" class="f-modal-icon f-modal-warning scaleWarning"
+        *ngIf="alertType?.toString() === 'f-modal-warning'">
+        <span class="f-modal-body pulseWarningIns"></span>
+        <span class="f-modal-dot pulseWarningIns"></span>
+    </div>
+    <div class="f-modal-alert__text">
+        <h3 class="alert__title">{{ title }}</h3>
+        <p class="alert__message">{{ message }}</p>
+    </div>
 </div>

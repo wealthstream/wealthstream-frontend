@@ -1,0 +1,10 @@
+@use '../../../scss/variables';
+
+.snak-bar {
+    color: variables.$blanco;
+    font-size: 1.2rem;
+}
+
+::ng-deep .mat-mdc-snack-bar-container .mdc-snackbar__surface {
+    background: variables.$sing-out;
+}

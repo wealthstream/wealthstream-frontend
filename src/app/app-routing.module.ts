@@ -14,6 +14,7 @@ import { ProfileComponent } from './components/account/account-movement/profile/
 import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
+    { path: "", redirectTo: '/transactional', pathMatch: 'full' },
     { path: "customer", component: CreateCustomerComponent },
     { path: "transactional", component: TransactionalComponent },
     { path: "account", component: CreateAccountComponent },
@@ -27,7 +28,7 @@ const routes: Routes = [
             { path: "profile", component: ProfileComponent }
         ]
     },
-    { path: "login", component: LoginComponent }
+    { path: "auth/login", component: LoginComponent }
 ];
 
 @NgModule({

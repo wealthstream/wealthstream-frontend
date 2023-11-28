@@ -15,10 +15,10 @@ export class AppComponent {
     title = 'wealthstream-frontend';
     alertType: string = "alert";
 
-    showBanner: boolean = true;
+    static showBanner: boolean = true;
 
     constructor(public alert: MatDialog,
-        private _alertService: AlertService, private _location: Location) { }
+        private _alertService: AlertService, private _location: Location) {}
 
     ngOnInit(): void {
         this._alertService.alert$.subscribe((res: Alert) => {
@@ -29,12 +29,17 @@ export class AppComponent {
             setTimeout(() => { this.alert.closeAll(); }, environment.timeOutAlert)
         });
 
-        if (this._location.path().startsWith('/login') || this._location.path() === '/movement' ||
+        if (this._location.path().startsWith('/auth/login') || this._location.path() === '/movement' ||
             this._location.path() === '/movement/profile' || this._location.path() === '/movement/summarize' ||
             this._location.path() === '/movement/deposit' || this._location.path() === '/movement/withdrawal' ||
             this._location.path() === '/movement/transfer') {
-            this.showBanner = false;
+            AppComponent.showBanner = false;
         }
 
     }
+
+    get showBanner() {
+        return AppComponent.showBanner;
+    }
+
 }

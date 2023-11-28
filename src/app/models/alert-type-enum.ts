@@ -1,7 +1,7 @@
 export enum AlertTypeEnum {
-    Ok = 'success',
-    Error = 'error',
-    Warning = 'warning'
+    Ok = 'f-modal-success',
+    Error = 'f-modal-error',
+    Warning = 'f-modal-warning'
 }
 
 export enum TitleEnum {

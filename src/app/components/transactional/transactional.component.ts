@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AppComponent } from 'src/app/app.component';
 import { Customer } from 'src/app/models';
 import { AlertTypeEnum, TitleEnum } from 'src/app/models/alert-type-enum';
 import { AlertService, CustomerService, SharedDataService } from 'src/app/services';
@@ -11,14 +12,11 @@ import { AlertService, CustomerService, SharedDataService } from 'src/app/servic
 })
 export class TransactionalComponent {
     identification: string = '';
-    disable: boolean = false;
 
     constructor(private _router: Router, private _customerService: CustomerService, private _sharedService: SharedDataService, private _alertService: AlertService) {}
 
     ngOnInit(): void {
-        // if (this.identification === null || this.identification === undefined || this.identification === '') {
-        //     this.disable = true;
-        // }
+        
     }
 
     searchCustomer(identification: string) {
@@ -30,9 +28,11 @@ export class TransactionalComponent {
                 if (data.idCus ===  null || data.idCus === undefined) {
                     this._sharedService.setIdentification(identification);
                     this._router.navigate(['/customer']);
+                    AppComponent.showBanner = true;
                 } else {
                     this._sharedService.setCustomer(data);
-                    this._router.navigate(['/login']);
+                    this._router.navigate(['/auth/login']);
+                    AppComponent.showBanner = false;
                 }
             }
         });

@@ -10,7 +10,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 
 import { CreateCustomerComponent } from './components/create-customer/create-customer.component';
 import { TransactionalComponent } from './components/transactional/transactional.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AlertDialogComponent } from './resources/alert-dialog/alert-dialog.component';
 import { CreateAccountComponent } from './components/account/create-account/create-account.component';
@@ -23,6 +23,10 @@ import { WithdrawalComponent } from './components/account/account-movement/movem
 import { OurPolicyComponent } from './components/our-policy/our-policy.component';
 import { ProfileComponent } from './components/account/account-movement/profile/profile.component';
 import { LoginComponent } from './components/login/login.component';
+import { AuthInterceptor } from './auth/auth.interceptor';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { SanckbarComponent } from './resources/sanckbar/sanckbar.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
 	declarations: [
@@ -39,6 +43,7 @@ import { LoginComponent } from './components/login/login.component';
 		OurPolicyComponent,
 		ProfileComponent,
 		LoginComponent,
+  SanckbarComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -49,13 +54,21 @@ import { LoginComponent } from './components/login/login.component';
 		ReactiveFormsModule,
 		MatIconModule,
 		MatDialogModule,
-		MatSidenavModule
+		MatSidenavModule,
+		MatSnackBarModule,
+		MatFormFieldModule
 	],
 	exports: [
-		MatIconModule
+		MatIconModule,
+		MatSnackBarModule
 	],
 	providers: [
-		SharedDataService
+		SharedDataService,
+		{
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptor,
+            multi: true,
+        },
 	],
 	bootstrap: [AppComponent]
 })

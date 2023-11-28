@@ -21,7 +21,6 @@ export class CreateCustomerComponent {
     address: string = '';
 
     checkPassword: boolean = false;
-    checkEmail: boolean = false;
     validation: boolean = false;
 
     customer!: Customer;
@@ -48,7 +47,6 @@ export class CreateCustomerComponent {
         } else {
             this.checkPassword = false;
         }
-
 
         this.checkPassword = false;
         this.validation = false;

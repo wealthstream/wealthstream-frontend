@@ -3,9 +3,9 @@
     <div class="shape shape2"></div>
     <div class="login login__form">
         <div class="container cont__login">
-            <input type="text" class="email input" name="email" placeholder="Username">
-            <input type="password" class="password input" name="password" placeholder="Password">
-            <input type="submit" class="btn btn__login" value="Ingresar" (click)="access()">
+            <input type="text" class="email input" name="email" placeholder="Username" [(ngModel)]="email">
+            <input type="password" class="password input" name="password" placeholder="Password" [(ngModel)]="password">
+            <input type="submit" class="btn btn__login" value="Ingresar" (click)="auth()">
         </div>
 
     </div>

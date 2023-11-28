@@ -15,9 +15,9 @@
                         <label for="identification" class="form__label">Cédula</label>
                         <input type="text" name="identification" id="identification"
                             class="form__input" placeholder="Ingresa tu número de cédula" maxlength="10"
-                            [(ngModel)]="identification">
+                            [(ngModel)]="identification" (change)="identification">
                     </div>
-                    <button (click)="searchCustomer(identification)" [disabled]="disable" class="form__btn" [ngClass]="{ 'form__btn-disable' :  disable }">Continuar</button>
+                    <button (click)="searchCustomer(identification)" [disabled]="!identification" class="form__btn" [ngClass]="{ 'form__btn-disable' :  !identification }">Continuar</button>
                 </form>
             </div>
         </div>

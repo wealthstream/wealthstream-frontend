@@ -16,7 +16,6 @@ export class ProfileComponent {
     account!: Account[];
     movement!: AccountMovement[];
     validation: boolean = false;
-    checkEmail: boolean = false;
 
     constructor(private _customerService: CustomerService, private _accountService: AccountService,
         private _sharedService: SharedDataService, private _movement: AccountMovementService,
@@ -45,9 +44,9 @@ export class ProfileComponent {
     updateProfile() {
         this.validation = true;        
 
-        if (!this._isValid.isValid(this.phone) || this._isValid.isValid(this.address) || !this._isValid.isValid(this.email)) {
+        if (!this._isValid.isValid(this.phone) || !this._isValid.isValid(this.address) || !this._isValid.isValid(this.email)) {
             return;
-        }        
+        }
 
         this.customer = {
             person: {
@@ -63,12 +62,11 @@ export class ProfileComponent {
             password: this.customer.password,
             email: this.email,
             state: this.customer.state
-        }
+        };
 
         this._customerService.updateCustomer(this.customer).subscribe({
             next: (data) => {
-                console.log(data);
-                this.showAlert(TitleEnum.Ok, 'Te has registrado exitosamente!', AlertTypeEnum.Ok);
+                this.showAlert(TitleEnum.Ok, 'Has actualizado tu información exitosamente!', AlertTypeEnum.Ok);
             }, error: () => {
                 this.showAlert(TitleEnum.Error, 'Nos encontramos fuera de servicio, intentalo más tarde!', AlertTypeEnum.Error);
             }

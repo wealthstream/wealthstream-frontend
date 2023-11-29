@@ -10,14 +10,11 @@ export class StorageService {
 
     constructor() {
         this.encryptionKey =environment.PASSWORD_SECRET;
-        console.log(this.encryptionKey);
-        
     }
 
     encryptData(data: any): void {
         try {
             const encryptedData = CryptoJS.AES.encrypt(JSON.stringify(data), this.encryptionKey).toString();
-            console.log("DATA ENCRIPTADA ", encryptedData);
             
             localStorage.setItem('encryptedData', encryptedData);
         } catch (error) {

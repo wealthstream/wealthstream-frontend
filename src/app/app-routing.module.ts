@@ -12,20 +12,21 @@ import { ReportsComponent } from './components/account/account-movement/report/r
 import { OurPolicyComponent } from './components/our-policy/our-policy.component';
 import { ProfileComponent } from './components/account/account-movement/profile/profile.component';
 import { LoginComponent } from './components/login/login.component';
+import { AuthGuardGuard } from './auth/auth-guard.guard';
 
 const routes: Routes = [
     { path: "", redirectTo: '/transactional', pathMatch: 'full' },
-    { path: "customer", component: CreateCustomerComponent },
+    { path: "customer", component: CreateCustomerComponent, canActivate: [ AuthGuardGuard ] },
     { path: "transactional", component: TransactionalComponent },
-    { path: "account", component: CreateAccountComponent },
+    { path: "account", component: CreateAccountComponent, canActivate: [ AuthGuardGuard ] },
     {
-        path: "movement", component: AccountMovementComponent,
+        path: "movement", component: AccountMovementComponent, canActivate: [ AuthGuardGuard ],
         children: [
-            { path: 'summarize', component: ReportsComponent },
-            { path: 'deposit', component: DepositComponent },
-            { path: 'withdrawal', component: WithdrawalComponent },
-            { path: 'transfer', component: TransferComponent },
-            { path: "profile", component: ProfileComponent }
+            { path: 'summarize', component: ReportsComponent, canActivate: [ AuthGuardGuard ] },
+            { path: 'deposit', component: DepositComponent, canActivate: [ AuthGuardGuard ] },
+            { path: 'withdrawal', component: WithdrawalComponent, canActivate: [ AuthGuardGuard ] },
+            { path: 'transfer', component: TransferComponent, canActivate: [ AuthGuardGuard ] },
+            { path: "profile", component: ProfileComponent, canActivate: [ AuthGuardGuard ] }
         ]
     },
     { path: "auth/login", component: LoginComponent }
